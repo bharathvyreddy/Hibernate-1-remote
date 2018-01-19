@@ -16,7 +16,7 @@ public class HibernateOne {
 		userDetails.setUserId(1);
 		userDetails.setUserName("User one");
 		Address homeadress=new Address();
-		homeadress.setStreet("homestreet1");
+		homeadress.setStreet("homestreetb");
 		homeadress.setCity("homecity1");
 		homeadress.setState("homestate1");
 		homeadress.setZipcode("homezip1");
