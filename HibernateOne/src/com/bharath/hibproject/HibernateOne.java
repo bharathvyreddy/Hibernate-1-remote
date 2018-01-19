@@ -1,11 +1,12 @@
 package com.bharath.hibproject;
 
-import java.util.Date;
+
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.bharath.hibproject.model.Address;
 import com.bharath.hibproject.model.UserDetails;
 
 public class HibernateOne {
@@ -14,16 +15,26 @@ public class HibernateOne {
 		UserDetails userDetails=new UserDetails();
 		userDetails.setUserId(1);
 		userDetails.setUserName("User one");
-		userDetails.setAddress("first address");
-		userDetails.setJoinDate(new Date());
-		userDetails.setDescription("My description 1");
+		Address homeadress=new Address();
+		homeadress.setStreet("homestreet1");
+		homeadress.setCity("homecity1");
+		homeadress.setState("homestate1");
+		homeadress.setZipcode("homezip1");
 		
-		
+		Address officeAddress=new Address();
+		officeAddress.setStreet("ofcstreet1");
+		officeAddress.setCity("ofccity1");
+		officeAddress.setState("ofcstate");
+		officeAddress.setZipcode("ofczip");
+		userDetails.setOfficeAddress(officeAddress);
+		userDetails.setHomeAddress(homeadress);
 		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(userDetails);
+		
 		session.getTransaction().commit();
+		session.close();
 
 	}
 
