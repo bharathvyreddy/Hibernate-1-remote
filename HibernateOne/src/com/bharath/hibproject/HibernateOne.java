@@ -22,9 +22,14 @@ public class HibernateOne {
 		homeadress.setZipcode("homezip1");
 		
 		Address officeAddress=new Address();
+		officeAddress.setStreet("Office Street");
+		officeAddress.setCity("Office City");
+		officeAddress.setState("Office State");
+		officeAddress.setZipcode("Office zip");
 		
-		userDetails.setOfficeAddress(officeAddress);
-		userDetails.setHomeAddress(homeadress);
+		userDetails.getListOfAdresses().add(officeAddress);
+		userDetails.getListOfAdresses().add(homeadress);
+		
 		SessionFactory sessionFactory=new Configuration().configure().buildSessionFactory();
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
