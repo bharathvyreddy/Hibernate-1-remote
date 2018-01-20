@@ -38,10 +38,16 @@ public class HibernateOne {
 		Session session=sessionFactory.openSession();
 		session.beginTransaction();
 		session.save(userDetails);
-		
 		session.getTransaction().commit();
 		session.close();
 
+		userDetails=null;
+		session=sessionFactory.openSession();
+		userDetails=(UserDetails) session.get(UserDetails.class, 1);
+		session.close();
+		System.out.println("ID "+userDetails.getUserId());
+		System.out.println("Size"+userDetails.getListOfAdresses().size());
+		
 	}
 
 }
