@@ -37,6 +37,7 @@
         <property name="show_sql">true</property>
 
         <mapping class="com.bharath.hibproject.model.UserDetails"/>
+        <mapping class="com.bharath.hibproject.model.Vehicle"/>
 
     </session-factory>
 
