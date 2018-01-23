@@ -1,12 +1,16 @@
 package com.bharath.hibproject.model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,9 +21,11 @@ public class UserDetails {
 	@Column(name="USER_ID")
 	private int userId;
 	private String userName;
-	@OneToOne
-	@JoinColumn(name="VEHICLE_ID")
-	private Vehicle vehicle;
+	@OneToMany
+	@JoinTable(name="USER_VEHICLE",
+				joinColumns=@JoinColumn(name="USER_ID"),
+				inverseJoinColumns=@JoinColumn(name="VEHICLE_ID"))
+	private Collection<Vehicle> vehicleList=new ArrayList<>();
 	
 	public int getUserId() {
 		return userId;
@@ -33,12 +39,13 @@ public class UserDetails {
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
-	public Vehicle getVehicle() {
-		return vehicle;
+	public Collection<Vehicle> getVehicleList() {
+		return vehicleList;
 	}
-	public void setVehicle(Vehicle vehicle) {
-		this.vehicle = vehicle;
+	public void setVehicleList(Collection<Vehicle> vehicleList) {
+		this.vehicleList = vehicleList;
 	}
+	
 	
 	
 	
